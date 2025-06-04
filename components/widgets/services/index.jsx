@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useEffect, useState } from "react";
 import CountUp from "react-countup";
 import { motion, useInView } from "framer-motion";
 import { CheckCircle2, Cpu, Gauge, Settings, Wrench } from "lucide-react";
@@ -33,9 +33,56 @@ const services = [
   },
 ];
 
+const useAnimatedCounter = (target, duration = 1500, loopDelay = 3000) => {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    let intervalId;
+    let loopTimeout;
+    let current = 0;
+
+    const startAnimation = () => {
+      const fps = 30;
+      const steps = duration / (1000 / fps); // kaç adımda bitecek
+      const increment = target / steps;
+
+      current = 0;
+      setCount(0);
+
+      intervalId = setInterval(() => {
+        current += increment;
+        if (current >= target) {
+          clearInterval(intervalId);
+          setCount(target);
+
+          // Belirli bir süre sonra tekrar başa dön
+          loopTimeout = setTimeout(() => {
+            startAnimation(); // tekrar başlat
+          }, loopDelay);
+        } else {
+          setCount(Math.floor(current));
+        }
+      }, 1000 / fps);
+    };
+
+    startAnimation();
+
+    return () => {
+      clearInterval(intervalId);
+      clearTimeout(loopTimeout);
+    };
+  }, [target, duration, loopDelay]);
+
+  return count;
+};
+
 export default function Services() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
+
+  const customers = useAnimatedCounter(500);
+  const projects = useAnimatedCounter(1200);
+  const years = useAnimatedCounter(10);
 
   return (
     <section className="py-24 bg-zinc-900 text-white">
@@ -70,21 +117,15 @@ export default function Services() {
           className="flex flex-col sm:flex-row justify-center gap-12"
         >
           <div className="text-center">
-            <h3 className="text-6xl font-bold text-red-600">
-              {isInView ? <CountUp end={500} duration={3} /> : 0}+
-            </h3>
+            <h3 className="text-6xl font-bold text-red-600">{customers}+</h3>
             <p className="text-gray-400 mt-2 text-lg">Mutlu Müşteri</p>
           </div>
           <div className="text-center">
-            <h3 className="text-6xl font-bold text-red-600">
-              {isInView ? <CountUp end={1200} duration={3} /> : 0}+
-            </h3>
+            <h3 className="text-6xl font-bold text-red-600">{projects}+</h3>
             <p className="text-gray-400 mt-2 text-lg">Başarılı Proje</p>
           </div>
           <div className="text-center">
-            <h3 className="text-6xl font-bold text-red-600">
-              {isInView ? <CountUp end={10} duration={3} /> : 0}+
-            </h3>
+            <h3 className="text-6xl font-bold text-red-600">{years}+</h3>
             <p className="text-gray-400 mt-2 text-lg">Yıllık Deneyim</p>
           </div>
         </motion.div>
