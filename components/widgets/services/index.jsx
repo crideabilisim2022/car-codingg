@@ -54,7 +54,7 @@ export default function Services() {
               transition={{ duration: 0.5, delay: i * 0.15 }}
               className="bg-zinc-800 p-8 rounded-xl shadow-lg hover:shadow-red-600 transition cursor-pointer"
             >
-              <div className="mb-6">{icon}</div>
+              <div className="mb-6 flex justify-center">{icon}</div>
               <h3 className="text-2xl font-semibold mb-3">{title}</h3>
               <p className="text-gray-300">{desc}</p>
             </motion.div>
