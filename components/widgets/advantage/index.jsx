@@ -38,7 +38,7 @@ const advantages = [
 
 export default function WhyUs() {
   return (
-    <section className="bg-black text-white py-16 px-6 md:px-12 max-w-7xl mx-auto">
+    <section className="bg-black text-white py-16 px-6 md:px-12 max-w-12xl mx-auto">
       <div className="text-center mb-12">
         <h2 className="text-4xl font-extrabold text-red-600 mb-4">
           Neden Biz?

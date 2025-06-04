@@ -38,7 +38,7 @@ export default function Services() {
   const isInView = useInView(ref, { once: true });
 
   return (
-    <section className="py-24 bg-gray-900 text-white">
+    <section className="py-24 bg-zinc-900 text-white">
       <div className="max-w-7xl mx-auto px-6 text-center">
         <h2 className="text-4xl font-extrabold text-red-600 mb-16">
           Hizmetlerimiz & Başarılarımız

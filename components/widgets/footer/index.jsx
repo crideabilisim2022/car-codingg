@@ -1,21 +1,44 @@
+"use client";
 import Link from "next/link";
 import { Facebook, Instagram, Twitter, Mail, Phone } from "lucide-react";
+import { motion } from "framer-motion";
+
+const fadeInFromLeft = (delay = 0) => ({
+  hidden: { opacity: 0, x: -50 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.6, delay },
+  },
+});
 
 export default function Footer() {
   return (
-    <footer className="bg-zinc-900 text-white pt-12 pb-6">
+    <footer className="bg-black text-white pt-12 pb-6">
       <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
         {/* Logo ve Hakkımızda */}
-        <div className="flex flex-col items-center text-center sm:items-start sm:text-left">
+        <motion.div
+          className="flex flex-col items-center text-center sm:items-start sm:text-left"
+          variants={fadeInFromLeft(0)}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+        >
           <h2 className="text-2xl font-bold text-red-600 mb-4">OtoYazılım</h2>
           <p className="text-sm text-gray-300">
             OtoYazılım, araç yazılım çözümleri, chip tuning, diagnostik
             hizmetler ve araç elektroniği alanında uzmanlaşmıştır.
           </p>
-        </div>
+        </motion.div>
 
         {/* Hizmetler */}
-        <div className="flex flex-col items-center text-center sm:items-start sm:text-left">
+        <motion.div
+          className="flex flex-col items-center text-center sm:items-start sm:text-left"
+          variants={fadeInFromLeft(0.2)}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+        >
           <h3 className="text-lg font-semibold mb-3 text-red-500">Hizmetler</h3>
           <ul className="space-y-2 text-sm">
             <li>
@@ -39,10 +62,16 @@ export default function Footer() {
               </Link>
             </li>
           </ul>
-        </div>
+        </motion.div>
 
         {/* Kurumsal */}
-        <div className="flex flex-col items-center text-center sm:items-start sm:text-left">
+        <motion.div
+          className="flex flex-col items-center text-center sm:items-start sm:text-left"
+          variants={fadeInFromLeft(0.4)}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+        >
           <h3 className="text-lg font-semibold mb-3 text-red-500">Kurumsal</h3>
           <ul className="space-y-2 text-sm">
             <li>
@@ -66,10 +95,16 @@ export default function Footer() {
               </Link>
             </li>
           </ul>
-        </div>
+        </motion.div>
 
         {/* İletişim */}
-        <div className="flex flex-col items-center text-center sm:items-start sm:text-left">
+        <motion.div
+          className="flex flex-col items-center text-center sm:items-start sm:text-left"
+          variants={fadeInFromLeft(0.6)}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+        >
           <h3 className="text-lg font-semibold mb-3 text-red-500">İletişim</h3>
           <ul className="space-y-2 text-sm text-gray-300">
             <li className="flex items-center gap-2 justify-center sm:justify-start">
@@ -91,12 +126,18 @@ export default function Footer() {
               <Twitter size={20} />
             </a>
           </div>
-        </div>
+        </motion.div>
       </div>
 
-      <div className="border-t border-zinc-700 mt-10 pt-4 text-center text-sm text-gray-400">
+      <motion.div
+        variants={fadeInFromLeft(0)}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        className="border-t border-zinc-700 mt-10 pt-4 text-center text-sm text-gray-400"
+      >
         © {new Date().getFullYear()} OtoYazılım. Tüm hakları saklıdır.
-      </div>
+      </motion.div>
     </footer>
   );
 }

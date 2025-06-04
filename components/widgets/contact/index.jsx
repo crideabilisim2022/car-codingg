@@ -7,7 +7,7 @@ export default function CallToAction() {
   return (
     <section
       className="relative bg-cover bg-center bg-no-repeat py-24 px-6 md:px-12 text-white"
-      style={{ backgroundImage: "url(/img/contact/cta-bg.jpg)" }}
+      style={{ backgroundImage: "url(/img/hero/car1.jpg)" }}
     >
       <div className="absolute inset-0 bg-black/70" />
 
